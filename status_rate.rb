@@ -1,3 +1,4 @@
+# coding: utf-8
 class StatusRate
   attr_reader :hp, :mp, :sp,
               :str, :vit, :int, :mnd, :dex, :agi, :luk
@@ -9,6 +10,44 @@ class StatusRate
     @str, @vit = 2.0, 2.0
     @int, @mnd = 2.0, 2.0
     @dex, @agi, @luk = 2.0, 2.0, 2.0
+  end
+
+  # set
+  def set_rand()
+    rdm = Random.new()
+    @hp = rdm.rand(0.2..10.0)
+    @mp = rdm.rand(0.2..10.0)
+    @sp = rdm.rand(0.2..10.0)
+    @str = rdm.rand(0.2..5.0)
+    @vit = rdm.rand(0.2..5.0)
+    @int = rdm.rand(0.2..5.0)
+    @mnd = rdm.rand(0.2..5.0)
+    @dex = rdm.rand(0.2..5.0)
+    @agi = rdm.rand(0.2..5.0)
+    @luk = rdm.rand(0.2..5.0)
+  end
+
+  def set_self()
+    print("HPrate?  ->")
+    @hp = $stdin.gets.to_i()
+    print("MPrate?  ->")
+    @mp = $stdin.gets.to_i()
+    print("SPrate?  ->")
+    @sp = $stdin.gets.to_i()
+    print("STRrate? ->")
+    @str = $stdin.gets.to_i()
+    print("VITrate? ->")
+    @vit = $stdin.gets.to_i()
+    print("INTrate? ->")
+    @int = $stdin.gets.to_i()
+    print("MNDrate? ->")
+    @mnd = $stdin.gets.to_i()
+    print("DEXrate? ->")
+    @dex = $stdin.gets.to_i()
+    print("AGIrate? ->")
+    @agi = $stdin.gets.to_i()
+    print("LUKrate? ->")
+    @luk = $stdin.gets.to_i()
   end
 
   # add
@@ -142,5 +181,13 @@ class StatusRate
     end
     @luk = x
   end
-  
+
+  # dataをstring型で返す
+  def get_data_s()
+    text = @hp.to_s + "," + @mp.to_s + "," + @sp.to_s + ","
+    text << @str.to_s + "," + @vit.to_s + "," + @int.to_s + ","
+    text << @mnd.to_s + "," + @dex.to_s + ","
+    text << @agi.to_s + "," + @luk.to_s
+    return text
+  end
 end

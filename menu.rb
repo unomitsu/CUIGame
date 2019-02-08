@@ -16,7 +16,7 @@ end
 def show_nowchar()
   puts "----- ----- -----"
   if (@carray[@cid] != nil)
-    @carray[@cid].show_status()
+    @carray[@cid].show()
   else
     puts "none character\n"
   end
@@ -45,7 +45,7 @@ def show_char()
       break;
     end
     if (!(@carray[id] == nil))
-      @carray[id].show_status()
+      @carray[id].show()
       @cid = id
     end
   end
@@ -66,5 +66,13 @@ def work_char()
   end
 end
 
+def save_data()
+  filename = "character_data.txt"
 
+  File.open(filename, "w") do |f|
+    @carray. each do |c|
+      f.puts c.get_data_s()
+    end
+  end
+end
 

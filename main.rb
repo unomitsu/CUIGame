@@ -19,6 +19,7 @@ while (1)
   when 3
     work_char()
   when 4
+    save_data()
     break;
   else
     break;

@@ -1,4 +1,4 @@
-class StatusBase
+class Status
   attr_reader :hp, :mp, :sp,
               :str, :vit, :int, :mnd, :dex, :agi, :luk
   
@@ -24,6 +24,43 @@ class StatusBase
     print("LUK : #{@luk.to_i}\n")
   end
 
+  def set_rand()
+    rdm = Random.new()
+    @hp = rdm.rand(5..30)
+    @mp = rdm.rand(5..30)
+    @sp = rdm.rand(5..30)
+    @str = rdm.rand(1..5)
+    @vit = rdm.rand(1..5)
+    @int = rdm.rand(1..5)
+    @mnd = rdm.rand(1..5)
+    @dex = rdm.rand(1..5)
+    @agi = rdm.rand(1..5)
+    @luk = rdm.rand(1..5)
+  end
+
+  def set_self()
+    print("HP?      ->")
+    @hp = $stdin.gets.to_i()
+    print("MP?      ->")
+    @mp = $stdin.gets.to_i()
+    print("SP?      ->")
+    @sp = $stdin.gets.to_i()
+    print("STR?     ->")
+    @str = $stdin.gets.to_i()
+    print("VIT?     ->")
+    @vit = $stdin.gets.to_i()
+    print("INT?     ->")
+    @int = $stdin.gets.to_i()
+    print("MND?     ->")
+    @mnd = $stdin.gets.to_i()
+    print("DEX?     ->")
+    @dex = $stdin.gets.to_i()
+    print("AGI?     ->")
+    @agi = $stdin.gets.to_i()
+    print("LUK?     ->")
+    @luk = $stdin.gets.to_i()
+  end
+  
   # add
   def add_hp(x=0)
     if x > 0
@@ -155,5 +192,12 @@ class StatusBase
     end
     @luk = x
   end
-  
+
+  def get_data_s()
+    text = @hp.to_s + "," + @mp.to_s + "," + @sp.to_s + ","
+    text << @str.to_s + "," + @vit.to_s + "," + @int.to_s + ","
+    text << @mnd.to_s + "," + @dex.to_s + ","
+    text << @agi.to_s + "," + @luk.to_s
+    return text
+  end
 end
