@@ -7,7 +7,8 @@ class Character
   @@num = 0
   
   public
-  
+
+  # make character
   def initialize(name="noname", id=1)
     @@num += 1
     @name = name
@@ -20,10 +21,7 @@ class Character
       make_rand()
     when 3
       make_self()
-    when 4
-      make_text()
     end
-    show()
   end
   
   def show()
@@ -46,7 +44,15 @@ class Character
     @exp.set_self()
   end
   
-  def make_text()
+  def make_load(name="noname",
+                status=[100, 100, 100, 5, 5, 5, 5, 5, 5, 5],
+                rate=[10.0, 10.0, 10.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+                exp=[1, 100, 1.5]
+               )
+    @name = name
+    @orig.set_load(status)
+    @rate.set_load(rate)
+    @exp.set_load(exp)
   end
 
   def get_num()

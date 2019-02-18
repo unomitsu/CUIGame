@@ -6,9 +6,12 @@ require "./menu"
 @carray = Array.new()
 @cid = 0
 
-print("===== Hello Ruby =====\n")
+print("===== Hello Ruby =====")
+
+load_data()
 
 while (1)
+  print("\n")
   show_nowchar()
 
   case select()

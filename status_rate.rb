@@ -4,7 +4,7 @@ class StatusRate
               :str, :vit, :int, :mnd, :dex, :agi, :luk
   
   public
-  
+
   def initialize()
     @hp, @mp, @sp =  5.0, 5.0, 5.0
     @str, @vit = 2.0, 2.0
@@ -49,7 +49,22 @@ class StatusRate
     print("LUKrate? ->")
     @luk = $stdin.gets.to_i()
   end
+  
+  def set_load(rate=[10.0, 10.0, 10.0,
+                     1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+    push_hp(rate[0])
+    push_mp(rate[1])
+    push_sp(rate[2])
+    push_str(rate[3])
+    push_vit(rate[4])
+    push_int(rate[5])
+    push_mnd(rate[6])
+    push_dex(rate[7])
+    push_agi(rate[8])
+    push_luk(rate[9])
+  end
 
+  
   # add
   def add_hp(x=0.0)
     if x > 0.0

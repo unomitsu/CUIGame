@@ -3,14 +3,14 @@ class Status
               :str, :vit, :int, :mnd, :dex, :agi, :luk
   
   public
-  
+
   def initialize()
     @hp, @mp, @sp =  10, 10, 10
     @str, @vit = 2, 2
     @int, @mnd = 2, 2
     @dex, @agi, @luk = 2, 2, 2
   end
-
+  
   def show()
     print("HP  : #{@hp.to_i}\n")
     print("MP  : #{@mp.to_i}\n")
@@ -59,6 +59,19 @@ class Status
     @agi = $stdin.gets.to_i()
     print("LUK?     ->")
     @luk = $stdin.gets.to_i()
+  end
+  
+  def set_load(status=[100, 100, 100, 5, 5, 5, 5, 5, 5, 5])
+    push_hp(status[0])
+    push_mp(status[1])
+    push_sp(status[2])
+    push_str(status[3])
+    push_vit(status[4])
+    push_int(status[5])
+    push_mnd(status[6])
+    push_dex(status[7])
+    push_agi(status[8])
+    push_luk(status[9])
   end
   
   # add
@@ -123,72 +136,72 @@ class Status
   end
 
   # push
-  def push_hp(x=0)
+  def push_hp(x=100)
     if x < 0
       x = 100
     end
     @hp = x
   end
   
-  def push_mp(x=0)
+  def push_mp(x=100)
     if x < 0
       x = 100
     end
     @mp = x
   end
 
-  def push_sp(x=0)
+  def push_sp(x=100)
     if x < 0
       x = 100
     end
     @sp = x
   end
   
-  def push_str(x=0)
+  def push_str(x=5)
     if x < 0
-      x = 1
+      x = 5
     end
     @str = x
   end
 
-  def push_vit(x=0)
+  def push_vit(x=5)
     if x < 0
-      x = 1
+      x = 5
     end
     @vit = x
   end
   
-  def push_int(x=0)
+  def push_int(x=5)
     if x < 0
-      x = 1
+      x = 5
     end
     @int = x
   end
 
-  def push_mnd(x=1)
+  def push_mnd(x=5)
     if x < 0
-      x = 1
+      x = 5
     end
     @mnd = x
   end
 
-  def push_dex(x=1)
+  def push_dex(x=5)
     if x < 0
-      x = 1
+      x = 5
     end
     @dex = x
   end
   
-  def push_agi(x=0)
+  def push_agi(x=5)
     if x < 0
-      x = 1
+      x = 5
     end
     @agi = x
   end
 
-  def push_luk(x=1)
+  def push_luk(x=5)
     if x < 0
-      x = 1
+      x = 5
     end
     @luk = x
   end
