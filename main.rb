@@ -13,19 +13,9 @@ load_data()
 while (1)
   print("\n")
   show_nowchar()
-
-  case select()
-  when 1
-    make_char()
-  when 2
-    show_char()
-  when 3
-    work_char()
-  when 4
-    save_data()
-    break;
-  else
-    break;
+  
+  if select()
+    break
   end
-
 end
+

@@ -4,13 +4,9 @@ require "./status_rate"
 require "./status_exp"
 
 class Character
-  @@num = 0
-  
   public
 
-  # make character
   def initialize(name="noname", id=1)
-    @@num += 1
     @name = name
     @orig = Status.new()
     @rate = StatusRate.new()
@@ -22,16 +18,25 @@ class Character
     when 3
       make_self()
     end
+    init_exp()
   end
   
+  ## ========== ========== ========== ========== ==========
+  ##   show
+  ## ========== ========== ========== ========== ==========
   def show()
-    print("---------- ----------\n")
     print("NAME  : #{@name}\n")
     @exp.show()
     @orig.show()
-    print("---------- ----------\n")
+  end
+  
+  def show_name()
+    print("NAME  : #{@name}\n")
   end
 
+  ## ========== ========== ========== ========== ==========
+  ##   make
+  ## ========== ========== ========== ========== ==========
   def make_rand()
     @orig.set_rand()
     @rate.set_rand()
@@ -55,20 +60,32 @@ class Character
     @exp.set_load(exp)
   end
 
-  def get_num()
-    return @@num
-  end
-
-  def add_exp(x=0)
-    lvnum = 0
-    if x > 0
-      lvnum = @exp.add_exp(x)
+  ## ========== ========== ========== ========== ==========
+  ##   経験値関係
+  ## ========== ========== ========== ========== ==========
+  # ---------- ---------- ---------- ---------- ----------
+  #   StatusExp class の関数を用いて, level up数を取得
+  # ---------- ---------- ---------- ---------- ----------
+  def init_exp()
+    @exp.init_exp().times do |num|
+      level_up()
     end
+  end
+  
+  def add_exp(x=0)
+    return if x <= 0
+
+    # level up数を取得
+    lvnum = @exp.add_exp(x)
+
+    # level up数だけ, statusを加算
     lvnum.times do |num|
       level_up()
     end
   end
-
+  # ---------- ---------- ---------- ---------- ----------
+  #   status に rate 分だけ加算
+  # ---------- ---------- ---------- ---------- ----------
   def level_up()
     @orig.add_hp(@rate.hp)
     @orig.add_mp(@rate.mp)
@@ -82,6 +99,9 @@ class Character
     @orig.add_luk(@rate.luk)
   end
 
+  ## ========== ========== ========== ========== ==========
+  ##   data を string型で返す
+  ## ========== ========== ========== ========== ==========
   def get_data_s()
     text = @name + ","+ @orig.get_data_s() + ","
     text << @rate.get_data_s + "," + @exp.get_data_s()

@@ -1,16 +1,20 @@
+# coding: utf-8
 class Status
   attr_reader :hp, :mp, :sp,
               :str, :vit, :int, :mnd, :dex, :agi, :luk
-  
+
   public
 
   def initialize()
-    @hp, @mp, @sp =  10, 10, 10
-    @str, @vit = 2, 2
-    @int, @mnd = 2, 2
-    @dex, @agi, @luk = 2, 2, 2
+    @hp, @mp, @sp =  10.0, 10.0, 10.0
+    @str, @vit = 2.0, 2.0
+    @int, @mnd = 2.0, 2.0
+    @dex, @agi, @luk = 2.0, 2.0, 2.0
   end
-  
+
+  ## ========== ========== ========== ========== ==========
+  ##   ステータスを表示
+  ## ========== ========== ========== ========== ==========
   def show()
     print("HP  : #{@hp.to_i}\n")
     print("MP  : #{@mp.to_i}\n")
@@ -23,42 +27,45 @@ class Status
     print("AGI : #{@agi.to_i}\n")
     print("LUK : #{@luk.to_i}\n")
   end
-
+  
+  ## ========== ========== ========== ========== ==========
+  ##   新規作成 set
+  ## ========== ========== ========== ========== ==========
   def set_rand()
     rdm = Random.new()
-    @hp = rdm.rand(5..30)
-    @mp = rdm.rand(5..30)
-    @sp = rdm.rand(5..30)
-    @str = rdm.rand(1..5)
-    @vit = rdm.rand(1..5)
-    @int = rdm.rand(1..5)
-    @mnd = rdm.rand(1..5)
-    @dex = rdm.rand(1..5)
-    @agi = rdm.rand(1..5)
-    @luk = rdm.rand(1..5)
+    push_hp(rdm.rand(5.0..30.0))
+    push_mp(rdm.rand(5.0..30.0))
+    push_sp(rdm.rand(5.0..30.0))
+    push_str(rdm.rand(1.0..5.0))
+    push_vit(rdm.rand(1.0..5.0))
+    push_int(rdm.rand(1.0..5.0))
+    push_mnd(rdm.rand(1.0..5.0))
+    push_dex(rdm.rand(1.0..5.0))
+    push_agi(rdm.rand(1.0..5.0))
+    push_luk(rdm.rand(1.0..5.0))
   end
 
   def set_self()
     print("HP?      ->")
-    @hp = $stdin.gets.to_i()
+    push_hp($stdin.gets.to_f())
     print("MP?      ->")
-    @mp = $stdin.gets.to_i()
+    push_mp($stdin.gets.to_f())
     print("SP?      ->")
-    @sp = $stdin.gets.to_i()
+    push_sp($stdin.gets.to_f())
     print("STR?     ->")
-    @str = $stdin.gets.to_i()
+    push_str($stdin.gets.to_f())
     print("VIT?     ->")
-    @vit = $stdin.gets.to_i()
+    push_vit($stdin.gets.to_f())
     print("INT?     ->")
-    @int = $stdin.gets.to_i()
+    push_int($stdin.gets.to_f())
     print("MND?     ->")
-    @mnd = $stdin.gets.to_i()
+    push_mnd($stdin.gets.to_f())
     print("DEX?     ->")
-    @dex = $stdin.gets.to_i()
+    push_dex($stdin.gets.to_f())
     print("AGI?     ->")
-    @agi = $stdin.gets.to_i()
+    push_agi($stdin.gets.to_f())
     print("LUK?     ->")
-    @luk = $stdin.gets.to_i()
+    push_luk($stdin.gets.to_f())
   end
   
   def set_load(status=[100, 100, 100, 5, 5, 5, 5, 5, 5, 5])
@@ -74,138 +81,95 @@ class Status
     push_luk(status[9])
   end
   
-  # add
-  def add_hp(x=0)
-    if x > 0
-      @hp += x
-    end
+  ## ========== ========== ========== ========== ==========
+  ##   add
+  ## ========== ========== ========== ========== ==========
+  def add_hp(x=0.0)
+    @hp += x if x > 0
   end
 
-  def add_mp(x=0)
-    if x > 0
-      @mp += x
-    end
+  def add_mp(x=0.0)
+    @mp += x if x > 0
   end
 
-  def add_sp(x=0)
-    if x > 0
-      @sp += x
-    end
+  def add_sp(x=0.0)
+    @sp += x if x > 0
   end
 
-  def add_str(x=0)
-    if x > 0
-      @str += x
-    end
+  def add_str(x=0.0)
+    @str += x if x > 0
   end
 
-  def add_vit(x=0)
-    if x > 0
-      @vit += x
-    end
+  def add_vit(x=0.0)
+    @vit += x if x > 0
   end
   
-  def add_int(x=0)
-    if x > 0
-      @int += x
-    end
+  def add_int(x=0.0)
+    @int += x if x > 0
   end
 
-  def add_mnd(x=0)
-    if x > 0
-      @mnd += x
-    end
+  def add_mnd(x=0.0)
+    @mnd += x if x > 0
   end
 
-  def add_dex(x=0)
-    if x > 0
-      @dex += x
-    end
+  def add_dex(x=0.0)
+    @dex += x if x > 0
   end
   
-  def add_agi(x=0)
-    if x > 0
-      @agi += x
-    end
+  def add_agi(x=0.0)
+    @agi += x if x > 0
   end
 
-  def add_luk(x=0)
-    if x > 0
-      @luk += x
-    end
+  def add_luk(x=0.0)
+    @luk += x if x > 0
   end
 
-  # push
-  def push_hp(x=100)
-    if x < 0
-      x = 100
-    end
-    @hp = x
+  ## ========== ========== ========== ========== ==========
+  ##   push
+  ## ========== ========== ========== ========== ==========
+  def push_hp(x=20.0)
+    x > 0.0 ? @hp = x : @hp = 20.0
   end
   
-  def push_mp(x=100)
-    if x < 0
-      x = 100
-    end
-    @mp = x
+  def push_mp(x=20.0)
+    x > 0.0 ? @mp = x : @mp = 20.0
   end
 
-  def push_sp(x=100)
-    if x < 0
-      x = 100
-    end
-    @sp = x
+  def push_sp(x=20.0)
+    x > 0.0 ? @sp = x : @sp = 20.0
   end
   
-  def push_str(x=5)
-    if x < 0
-      x = 5
-    end
-    @str = x
+  def push_str(x=5.0)
+    x > 0.0 ? @str = x : @str = 5.0
   end
 
-  def push_vit(x=5)
-    if x < 0
-      x = 5
-    end
-    @vit = x
+  def push_vit(x=5.0)
+    x > 0.0 ? @vit = x : @vit = 5.0
   end
   
-  def push_int(x=5)
-    if x < 0
-      x = 5
-    end
-    @int = x
+  def push_int(x=5.0)
+    x > 0.0 ? @int = x : @int = 5.0
   end
 
-  def push_mnd(x=5)
-    if x < 0
-      x = 5
-    end
-    @mnd = x
+  def push_mnd(x=5.0)
+    x > 0.0 ? @mnd = x : @mnd = 5.0
   end
 
-  def push_dex(x=5)
-    if x < 0
-      x = 5
-    end
-    @dex = x
+  def push_dex(x=5.0)
+    x > 0.0 ? @dex = x : @dex = 5.0
   end
   
-  def push_agi(x=5)
-    if x < 0
-      x = 5
-    end
-    @agi = x
+  def push_agi(x=5.0)
+    x > 0.0 ? @agi = x : @agi = 5.0
   end
 
-  def push_luk(x=5)
-    if x < 0
-      x = 5
-    end
-    @luk = x
+  def push_luk(x=5.0)
+    x > 0.0 ? @luk = x : @luk = 5.0
   end
 
+  ## ========== ========== ========== ========== ==========
+  ##   データを string型 で返す
+  ## ========== ========== ========== ========== ==========
   def get_data_s()
     text = @hp.to_s + "," + @mp.to_s + "," + @sp.to_s + ","
     text << @str.to_s + "," + @vit.to_s + "," + @int.to_s + ","
@@ -213,4 +177,5 @@ class Status
     text << @agi.to_s + "," + @luk.to_s
     return text
   end
+  
 end
